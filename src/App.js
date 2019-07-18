@@ -11,6 +11,8 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Backpack1 from "./components/Backpack1";
+import Backpack from "./components/Backpack";
+import Cart from "./components/Cart";
 export default function App() {
   
   return (
@@ -26,6 +28,8 @@ export default function App() {
         <Route exact path="/Login" component={Login} />
         <Route exact path="/Profile" component={Profile} />
         <Route exact path="/Backpack1" component={Backpack1} />
+        <Route exact path="/backpack/:id" component={Backpack} /> 
+        <Route exact path="/Cart/:id" component={Cart} /> 
       </Switch>
     </Router>
   );

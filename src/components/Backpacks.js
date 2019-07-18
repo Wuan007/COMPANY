@@ -1,11 +1,44 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
+import axios from "axios";
+import gallery1 from "../img/gallery1.jpeg"
+import gallery2 from "../img/gallery2.jpeg"
+import gallery3 from "../img/gallery3.jpeg"
+import gallery4 from "../img/gallery4.jpeg"
 
 export default class Backpacks extends Component {
+
+    state = {
+        backpacks: []
+    }
+
+    async componentDidMount () {
+        const res = await axios.get("/api/backpack");
+        this.setState({
+            backpacks: res.data
+        })
+    }
+
     render() {
         return (
             <div>
-                
+                {
+                    this.state.backpacks.map(
+                        (backpack) => (
+                            <div key={backpack._id}>
+                                <h2>{backpack.name}</h2>
+                                <Link to={`/backpack/${backpack._id}`} >
+                                    <img 
+                                        width="400" 
+                                        height="auto" 
+                                        src={`/img/${backpack.img}.jpeg`} 
+                                        alt="" />
+                                </Link>
+                            </div>
+                        )
+                    )
+                }
+{/*                 
                 <img width="400" height="auto" src="" alt="" />
                 <Link to='/about' ></Link>
                 <Link to="/about">
@@ -35,7 +68,7 @@ export default class Backpacks extends Component {
                 <Link to='/about' ></Link>
                 <Link to="/about">
                     <img width="400" height="auto" src="https://www.rushimprint.com/ajax_handler.php?page=get_product_image&dimension=400&pID=71602" alt="" />
-                </Link>
+                </Link> */}
             </div>
         )
     }
